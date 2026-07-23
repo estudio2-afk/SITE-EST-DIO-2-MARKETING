@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://estudio2marketing.com.br/sitemap.xml
