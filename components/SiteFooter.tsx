@@ -14,7 +14,11 @@ const anchorLinks = [
 const serviceLinks = [
   { label: "Tráfego Pago", to: "/trafego-pago-sao-mateus" },
   { label: "Social Media", to: "/social-media-sao-mateus" },
-  { label: "Videomaker", to: "/videomaker-sao-mateus" },
+  { label: "Produção de Vídeo", to: "/videomaker-sao-mateus" },
+  { label: "Criação de Conteúdo", to: "/criacao-de-conteudo-sao-mateus" },
+  { label: "Tráfego Orgânico / SEO", to: "/trafego-organico-sao-mateus" },
+  { label: "Sites e Landing Pages", to: "/criacao-de-sites-sao-mateus" },
+  { label: "Acompanhamento Comercial", to: "/vendas-e-follow-up" },
   { label: "Blog", to: "/blog" },
   { label: "Política de Privacidade", to: "/politica-de-privacidade" },
   { label: "Política de Segurança", to: "/politica-de-seguranca" },

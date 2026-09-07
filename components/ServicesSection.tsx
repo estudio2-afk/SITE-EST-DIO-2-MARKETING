@@ -37,6 +37,7 @@ export const services = [
     description:
       "Fotos, posts, copy e roteiros pensados para o seu público local. Conteúdo que comunica e converte.",
     highlight: "Design + Copy",
+    href: "/criacao-de-conteudo-sao-mateus",
   },
   {
     icon: TrendingUp,
@@ -44,6 +45,7 @@ export const services = [
     description:
       "Posicionamos seu negócio no Google e nas redes sem depender só de anúncio. Crescimento que continua rendendo no longo prazo.",
     highlight: "Google + Social",
+    href: "/trafego-organico-sao-mateus",
   },
   {
     icon: Globe,
@@ -51,6 +53,7 @@ export const services = [
     description:
       "Sites rápidos, otimizados para o Google e pensados para gerar contato. Não é cartão de visita — é máquina de cliente.",
     highlight: "SEO incluído",
+    href: "/criacao-de-sites-sao-mateus",
   },
   {
     icon: Target,
@@ -66,6 +69,7 @@ export const services = [
     description:
       "Metas de faturamento, análise de sazonalidade, atendimento do time, retenção e aumento de ticket médio — para multiplicar o resultado com a base que você já tem.",
     highlight: "Vendas + Retenção",
+    href: "/vendas-e-follow-up",
   },
 ];
 

@@ -32,6 +32,9 @@ const ROUTES = [
   "/blog/social-media-crescimento",
   "/blog/crm-negocio-local",
   "/blog/guia-follow-up-marketing",
+  "/criacao-de-conteudo-sao-mateus",
+  "/trafego-organico-sao-mateus",
+  "/criacao-de-sites-sao-mateus",
 ];
 
 // ─── 1. Static file server ────────────────────────────────────────────────────
