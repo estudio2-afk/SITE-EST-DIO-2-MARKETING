@@ -22,7 +22,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { setSEO, SITE_URL, OG_IMAGE } from "@/lib/seo";
 import { processoPassos } from "@/components/ProcessSection";
 
-const TITLE = "Estúdio 2 Marketing — Agência de Marketing Digital em São Mateus/ES";
+const TITLE = "Estúdio 2 Marketing | Agência Digital em São Mateus/ES";
 const DESCRIPTION =
   "Ganhe mais clientes no digital em São Mateus e Guriri. Gestão de redes, reels, Meta Ads e sites com acompanhamento real, relatório mensal e resultados a partir do 3º mês.";
 
