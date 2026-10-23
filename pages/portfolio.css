@@ -1,0 +1,76 @@
+/* Página /portfolio — animações em CSS puro, disparadas por IntersectionObserver */
+
+.pf-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.pf-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tela que rola sozinha dentro dos mockups */
+.pf-screen {
+  position: relative;
+  overflow: hidden;
+  background: #0b1020;
+}
+.pf-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+.pf-screen.is-playing img {
+  animation: pf-scroll var(--pf-duration, 22s) ease-in-out infinite alternate;
+}
+@keyframes pf-scroll {
+  0%, 8% { object-position: 50% 0%; }
+  92%, 100% { object-position: 50% 100%; }
+}
+
+/* Brilho suave no hero */
+.pf-glow {
+  animation: pf-glow 9s ease-in-out infinite alternate;
+}
+@keyframes pf-glow {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
+  to { transform: translate3d(-40px, 30px, 0) scale(1.15); opacity: 0.9; }
+}
+
+/* Linha do tempo */
+.pf-timeline-fill {
+  transition: height 0.8s ease;
+}
+.pf-step-dot {
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+}
+
+/* Ícones da grade "o que vem em toda página" */
+.pf-feature:hover .pf-feature-icon {
+  transform: translateY(-3px) rotate(-6deg);
+}
+.pf-feature-icon {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Modal do print do Google */
+.pf-dialog {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(960px, 94vw);
+  max-height: 92vh;
+}
+.pf-dialog::backdrop {
+  background: rgb(11 16 32 / 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-reveal { opacity: 1; transform: none; transition: none; }
+  .pf-screen.is-playing img { animation: none; }
+  .pf-glow { animation: none; }
+  .pf-timeline-fill, .pf-step-dot, .pf-feature-icon { transition: none; }
+}

@@ -35,6 +35,7 @@ const ROUTES = [
   "/criacao-de-conteudo-sao-mateus",
   "/trafego-organico-sao-mateus",
   "/criacao-de-sites-sao-mateus",
+  "/portfolio",
 ];
 
 // ─── 1. Static file server ────────────────────────────────────────────────────
@@ -54,9 +55,17 @@ function getMime(filePath) {
   return map[ext] ?? "application/octet-stream";
 }
 
+// Template limpo, lido antes de qualquer rota ser salva. Sem isso, as rotas
+// seguintes herdariam o JSON-LD da home gravado em dist/index.html.
+const TEMPLATE = readFileSync(join(DIST, "index.html"), "utf-8");
+
 const server = createServer((req, res) => {
   let urlPath = req.url.split("?")[0];
-  if (urlPath === "/" || !urlPath.includes(".")) urlPath = "/index.html";
+  if (urlPath === "/" || !urlPath.includes(".")) {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(TEMPLATE);
+    return;
+  }
   const filePath = join(DIST, urlPath);
 
   try {
@@ -64,10 +73,8 @@ const server = createServer((req, res) => {
     res.writeHead(200, { "Content-Type": getMime(filePath) });
     createReadStream(filePath).pipe(res);
   } catch {
-    // SPA fallback — always serve index.html for client-side routing
-    const html = readFileSync(join(DIST, "index.html"), "utf-8");
     res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(html);
+    res.end(TEMPLATE);
   }
 });
 
@@ -100,6 +107,11 @@ async function prerenderRoute(page, route) {
   // Extra 500 ms to ensure all JSON-LD scripts are injected
   await new Promise((r) => setTimeout(r, 500));
 
+  // O onload da fonte já trocou media para "all"; devolve "print" para não bloquear a renderização.
+  await page.evaluate(() => {
+    document.querySelectorAll('link[rel="stylesheet"][onload]').forEach((l) => l.setAttribute("media", "print"));
+  });
+
   const html = await page.content();
 
   let outPath;
@@ -131,6 +143,8 @@ async function prerender() {
   });
 
   const page = await browser.newPage();
+  // Sem movimento: o HTML salvo fica com os pôsteres leves dos mockups, e não com os prints completos.
+  await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
 
   for (const route of ROUTES) {
     await prerenderRoute(page, route);

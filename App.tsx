@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Landing from "@/pages/Landing";
@@ -23,12 +23,14 @@ import BlogGuiaFollowUpMarketing from "@/pages/BlogGuiaFollowUpMarketing";
 import CriacaoConteudo from "@/pages/CriacaoConteudo";
 import TrafegoOrganico from "@/pages/TrafegoOrganico";
 import CriacaoSites from "@/pages/CriacaoSites";
+import Portfolio from "@/pages/Portfolio";
 
-export default function App() {
+function Layout() {
+  const { pathname } = useLocation();
+  const standalone = pathname.startsWith("/portfolio");
   return (
-    <BrowserRouter>
       <div className="overflow-x-hidden">
-        <SiteHeader />
+        {!standalone && <SiteHeader />}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/trafego-pago-sao-mateus" element={<TrafegoPago />} />
@@ -52,10 +54,18 @@ export default function App() {
           <Route path="/criacao-de-conteudo-sao-mateus" element={<CriacaoConteudo />} />
           <Route path="/trafego-organico-sao-mateus" element={<TrafegoOrganico />} />
           <Route path="/criacao-de-sites-sao-mateus" element={<CriacaoSites />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="*" element={<Landing />} />
         </Routes>
-        <SiteFooter />
+        {!standalone && <SiteFooter />}
       </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }

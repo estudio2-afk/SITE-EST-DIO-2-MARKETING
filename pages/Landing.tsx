@@ -19,20 +19,12 @@ import Testimonials, { testimonials } from "@/components/Testimonials";
 import { LeadForm } from "@/components/LeadForm";
 import FAQ, { faqs } from "@/components/FAQ";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { setSEO, SITE_URL, OG_IMAGE } from "@/lib/seo";
+import { setSEO, SITE_URL, OG_IMAGE, injectSchema } from "@/lib/seo";
 import { processoPassos } from "@/components/ProcessSection";
 
 const TITLE = "Estúdio 2 Marketing | Agência Digital em São Mateus/ES";
 const DESCRIPTION =
   "Ganhe mais clientes no digital em São Mateus e Guriri. Gestão de redes, reels, Meta Ads e sites com acompanhamento real, relatório mensal e resultados a partir do 3º mês.";
-
-function injectSchema(schema: object): HTMLScriptElement {
-  const el = document.createElement("script");
-  el.type = "application/ld+json";
-  el.textContent = JSON.stringify(schema);
-  document.head.appendChild(el);
-  return el;
-}
 
 export default function Landing() {
   useEffect(() => {
